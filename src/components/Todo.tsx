@@ -20,7 +20,9 @@ export default function Todo() {
           onChange={(event) => setTodo(event.target.value)}
           value={todo}
         />
-        <button type="submit" disabled={todo.trim() === ""}>Add</button>
+        <button type="submit" disabled={todo.trim() === ""}>
+          Add
+        </button>
       </form>
       <ul>
         {todos.map((item) => (
