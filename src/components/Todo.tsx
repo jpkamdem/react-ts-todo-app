@@ -5,7 +5,10 @@ export default function Todo() {
   const [todos, setTodos] = useState<string[]>([]);
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    setTodos([...todos, todo]);
+    if (todo.trim() === "") {
+      return;
+    }
+    setTodos([...todos, todo.trim()]);
     setTodo("");
   }
 
@@ -17,7 +20,7 @@ export default function Todo() {
           onChange={(event) => setTodo(event.target.value)}
           value={todo}
         />
-        <button type="submit">Add</button>
+        <button type="submit" disabled={todo.trim() === ""}>Add</button>
       </form>
       <ul>
         {todos.map((item) => (
