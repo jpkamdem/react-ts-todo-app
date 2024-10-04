@@ -1,33 +1,15 @@
 import { useState } from "react";
+import Form from "./Form";
+import TodoItems from "./TodoItems";
 
 export default function Todo() {
   const [todo, setTodo] = useState<string>("");
   const [todos, setTodos] = useState<string[]>([]);
-  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-    if (todo.trim() === "") {
-      return;
-    }
-    setTodos([...todos, todo.trim()]);
-    setTodo("");
-  }
-
   return (
     <>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          onChange={(event) => setTodo(event.target.value)}
-          value={todo}
-        />
-        <button type="submit" disabled={todo.trim() === ""}>
-          Add
-        </button>
-      </form>
+      <Form todo={todo} setTodo={setTodo} todos={todos} setTodos={setTodos} />
       <ul>
-        {todos.map((item) => (
-          <li key={item}> {item} </li>
-        ))}
+        <TodoItems todos={todos} />
       </ul>
     </>
   );
